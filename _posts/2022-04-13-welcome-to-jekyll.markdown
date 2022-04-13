@@ -1,29 +1,72 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Making pangolin work with Python"
 date:   2022-04-13 23:52:15 +0200
-categories: jekyll update
+categories: python
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+You may have run into errors trying to use the [pangolin](https://github.com/uoip/pangolin) library for Python by uoip. His fork hasn't been updated in a while. Here is how to use pangolin the the correct way.
 
-Jekyll requires blog post files to be named according to the following format:
+In 2022, pangolin - [stevenlovegrove's repo](https://github.com/stevenlovegrove/Pangolin) actually has python bindings - so you don't need to use uoip's fork.
 
-`YEAR-MONTH-DAY-title.MARKUP`
+You can read the README [here](https://github.com/stevenlovegrove/Pangolin) for installing it (install from the master branch), but the main thing to note are the out of date code samples.
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+pangolin.View.SetBounds now takes in different arguments. If you try to call it with float values, it complains that it doesn't match a function. I've modified [markoelez's](https://github.com/markoelez/Pangolin/blob/master/python/examples/HelloPangolin.py) code to work.
 
-Jekyll also offers powerful support for code snippets:
+```python
+import OpenGL.GL as gl
+import pypangolin as pangolin
+import numpy as np
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+def main():
+    pangolin.CreateWindowAndBind('Main', 640, 480)
+    gl.glEnable(gl.GL_DEPTH_TEST)
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+    # Define Projection and initial ModelView matrix
+    scam = pangolin.OpenGlRenderState(
+        pangolin.ProjectionMatrix(640, 480, 420, 420, 320, 240, 0.2, 100),
+        pangolin.ModelViewLookAt(-2, 2, -2, 0, 0, 0, pangolin.AxisDirection.AxisY))
+    handler = pangolin.Handler3D(scam)
 
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+    # this was out of date.
+	dcam = (
+        pn.CreateDisplay()
+        .SetBounds(
+            pn.Attach(0),
+            pn.Attach(1),
+            pn.Attach.Pix(180),
+            pn.Attach(1),
+            -640/480,
+            )
+        .SetHandler(handler)
+	)
+
+    while not pangolin.ShouldQuit():
+        gl.glClear(gl.GL_COLOR_BUFFER_BIT | gl.GL_DEPTH_BUFFER_BIT)
+        gl.glClearColor(1.0, 1.0, 1.0, 1.0)
+        dcam.Activate(scam)
+        
+        # Render OpenGL Cube
+        pangolin.glDrawColouredCube()
+
+        # Draw Point Cloud
+        points = np.random.random((100000, 3)) * 10
+        colors = np.zeros((len(points), 3))
+        colors[:, 1] = 1 -points[:, 0] / 10.
+        colors[:, 2] = 1 - points[:, 1] / 10.
+        colors[:, 0] = 1 - points[:, 2] / 10.
+
+        gl.glPointSize(2)
+        gl.glColor3f(1.0, 0.0, 0.0)
+        # access numpy array directly(without copying data), array should be contiguous.
+        pangolin.DrawPoints(points, colors)    
+
+        pangolin.FinishFrame()
+
+
+
+if __name__ == '__main__':
+    main()
+```
+
+I hope this helped you. Feel free to check out the other things I make. Or join my [Discord](my://discord.com/invite/UkMNCJu2x3)
+
