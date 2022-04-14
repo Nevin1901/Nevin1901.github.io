@@ -19,12 +19,14 @@ without fee is hereby granted, provided that the above copyright notice
 and this permission notice appear in all copies.
 ```
 
-Wtf?? Permission to use as long as the work is committed to the master branch? Who does this help besides the creators? Why is there any incentive for anyone contribute if they can't even benefit from the changes?
+Wtf?? Permission to use as long as the work is committed to the master branch? Maybe the authors want to protect their work, but I don't understand why one takes an aggressive stance when developing something like this.
 
-Fine. Maybe the authors want to protect their work. But I don't understand why one takes an aggressive stance when developing something like this. It's a cool idea, but the licenses make it feel like the developers are doing this for themselves more than they are the community around it.
+The licences around this work seem to heavily restrict what anyone except for the repository maintainers can do with the code - regardless of who wrote it.
 
-I also looked at the clients/servers, and they aren't even released under this license. You are able to view the source code, but they're closed source. Why?? What if someone wanted to make a change to a server (modding support)?
+I also looked at the clients/servers, and they aren't released under a public license. You are able to view the source code, but you can't edit it.
 
-Not only that, if you want to start a server, you need a key which you can only get from the repository owners, meaning if they don't like you, they can just ban your server.
+This is what I'm talking about when I say "Fake Open Source" - projects are made Open source, but under an extremely restrictive license. At that point make it GPLv3 and save everyone the headache.
 
-In my opinion this needs to be free and decentralized or it will fail. There's no reason a project which breaks boundaries should be tied off to a few people.
+There also seems to be a monopoly as to who manages the servers. In order to start a server for this open source project, you need a key you can ONLY get from the maintainers. There is no way you can host an alternate server without the maintainers approval.
+
+In my opinion open source software should be "do whatever you want" with the hope of making the world a better place - not something for control.
