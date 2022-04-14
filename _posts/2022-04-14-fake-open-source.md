@@ -10,14 +10,16 @@ categories: open-source
 
 I had found this pretty cool open source project called BeamMP - a multiplayer mod for Beamng Drive. I thought the idea was pretty cool. BeamNG drive is a singleplayer only game, so for modders to have ported over multiplayer functionality is impressive.
 
-Then I looked at the license.
+I was looking at the code, seeing if I could modify it and play around with it - and then I looked at the license.
 
 ```
 Custom ISC License
-Permission to use and modify (providing any work is committed upstream) without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+Permission to use and modify (providing any work is committed upstream)
+without fee is hereby granted, provided that the above copyright notice
+and this permission notice appear in all copies.
 ```
 
-Wtf?? Permission to use as long as the work is committed to the master branch? Who does this help besides the creators? Why is there any incentive for anyone contribute if they can't even benefit from the changes? These people are working on a policy of "success for me but not for thee".
+Wtf?? Permission to use as long as the work is committed to the master branch? Who does this help besides the creators? Why is there any incentive for anyone contribute if they can't even benefit from the changes?
 
 Fine. Maybe the authors want to protect their work. But I don't understand why one takes an aggressive stance when developing something like this. It's a cool idea, but the licenses make it feel like the developers are doing this for themselves more than they are the community around it.
 
