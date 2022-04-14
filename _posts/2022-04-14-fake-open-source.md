@@ -5,7 +5,7 @@ date:   2022-04-14 19:01:01 +0200
 categories: open-source
 ---
 
-![image of car](TODO)
+![image of car](/assets/20220414191012_1.jpg)
 *please don't go attack anyone, just sharing my views
 
 I had found this pretty cool open source project called BeamMP - a multiplayer mod for Beamng Drive. I thought the idea was pretty cool. BeamNG drive is a singleplayer only game, so for modders to have ported over multiplayer functionality is impressive.
